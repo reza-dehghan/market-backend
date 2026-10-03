@@ -2,7 +2,17 @@ import{userRepository} from "../repositories/user.repository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { AppError } from "../utils/AppError";
+
+
 export class AuthService{
+
+    /**
+     * It performs the sign-up operation.
+     * @param {string} name - name of client 
+     * @param {string} email - email of client
+     * @param {string} password - password of client 
+     * @returns {Promise<User>}
+     */
     async signup(
         name:string,
         email:string,
@@ -27,7 +37,12 @@ export class AuthService{
         return await userRepository.save(user);
     }
 
-
+    /**
+     * It performs the login operation.
+     * @param {string} email - email user
+     * @param {string} password - password user 
+     * @returns {Promise<{token:string}>} - Returns the authentication token.
+     */
     async   login(
         email:string,
         password:string
@@ -61,6 +76,12 @@ export class AuthService{
     return{token};
     }
 
+    /**
+     * It performs the OTP operation.
+     * @param {string} email - email user
+     * @param {string} otp - otp cod 
+     * @returns {Promise<{message:string,email:string}>}
+     */
     async verifyOtp(
         email:string,
         otp:string
