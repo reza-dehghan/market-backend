@@ -32,6 +32,11 @@ export class Product{
 
     description!:string;
 
+    @Column({
+        default:true
+    })
+    isActive!:boolean
+
     @CreateDateColumn()
     createdAt!: Date;
 }

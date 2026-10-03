@@ -2,8 +2,14 @@ import { cartRepository } from "../repositories/cart.repository";
 import { productRepository } from "../repositories/product.repository";
 import { cartItemRepository } from "../repositories/cartItem.repository";
 import { AppError } from "../utils/AppError";
+import { Cart } from "../entities/Cart";
 export class CartService {
 
+    /**
+     * It retrieves the user's shopping cart using the user ID.
+     * @param {number} userId -  id of user
+     * @returns {Promise<Cart| null>}
+     */
     async getCartByUserId(userId: number) {
 
         const cart = await cartRepository.findOne({
@@ -22,7 +28,13 @@ export class CartService {
         return cart;
     }
 
-
+    /**
+     * add item to cart 
+     * @param {number} userId - id of user 
+     * @param  {number} productId - id of product
+     * @param {number} quantity - quantity of product
+     * @returns 
+     */
     async addItem(
         userId: number,
         productId: number,
